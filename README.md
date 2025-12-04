@@ -197,4 +197,14 @@ Si decides crear primero el disco que se utilizara en la maquina virtual, en lug
 ```
 
 
+-----
+Bibliografias 
+
+- (https://infotechys-com.translate.goog/create-a-virtual-machine-in-kvm-using-virt-install/?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc)
+- (https://docs-redhat-com.translate.goog/en/documentation/red_hat_enterprise_linux/7/html/virtualization_deployment_and_administration_guide/sect-guest_virtual_machine_installation_overview-creating_guests_with_virt_install?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc)
+- ( https://wiki.debian.org/es/libvirt )
+- (https://fp.josedomingo.org/hlc2122/u01/introduccion.html)
+
+
+
 
