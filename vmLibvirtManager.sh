@@ -22,8 +22,11 @@ fi
 
 
 # Variables que almacenan la ruta que se utilizaran en la maquina virtual
+
 disk=""
 ISO=""
+osVariant=""
+graphisConf=""
 
 
 diskF(){
@@ -83,19 +86,42 @@ createDisk(){
 
 isoCheck(){
 	read -p  "Ingrese ruta del ISO: " pathISO
-	if [[ ! -e "$pathISO" ]]; then
+	if [[ -e "$pathISO" ]]; then
+		ISO="$pathISO"
+	else
 		echo "Archivo no encontrado..."
 		exit 1
+	fi
+}
+
+
+
+# Funcion para elegir el --os-variant
+osVariantF(){
+	echo "Variante del sistema"
+	echo "Elije el que mas tenga relevancia "
+	virt-install --osinfo list |  less 
+
+	read -p "Ingresar variante: " osVariant1
+
+	if  virt-install --osinfo list | grep -q "$osVariant1"; then
+		osVariant="$osVariant1"
 	else
-		ISO="$pathISO"
+		echo "No se encontro coincidencia"
+		exit 1 
 	fi
 
 }
 
 
-
-# implementar funcion para -os-variant
 # implementar funcion para graphics configuration 
+graphicsF(){
+	read -p "Ingrese el tipo de configuracion para el uso grafico: " graphics
+	graphisConf="$graphics"
+	
+}
+
+
 # Probarlo
 
 
@@ -104,5 +130,14 @@ read -p "Ram de la maquina: " ramMachine
 read -p "Cpu's de la maquina " cpuMachine
 diskF
 isoCheck
-read -p 
+osVariantF
+graphicsF
+ 
+
+#disk=""
+#ISO=""
+#osVariant=""
+#graphisConf=""
+
+echo "virt-install --name $nameMachine --ram $ramMachine -vcpus=$cpuMachine --disk path=$disk -c $ISO --os-variant $osVariant --graphics $graphisConf"
 
