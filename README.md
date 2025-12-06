@@ -199,7 +199,7 @@ Si decides crear primero el disco que se utilizara en la maquina virtual, en lug
 
 
 ## Conexion a las maquinas virtuales
-
+Para la conexion a las maquinas virtuales
 
 
 
