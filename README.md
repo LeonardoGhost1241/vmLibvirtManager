@@ -203,6 +203,61 @@ Hay varias formas de conectarse a una maquina virtual, dependiendo de que servic
 
 
 
+
+
+
+
+## Inicio de Booteo/ Iniciar maquina con una iso 
+Para hacer esto necesitamos apagar la maquina y despues modificar el archivo xml que tenemos de la maquina, lo haremos con el comando:
+
+```
+    sudo virsh edit vm
+```
+
+o simplemente usando un editor de texto en donde tengamos el archivo alojado
+
+Una vez dentro del arhcivo, ubicaremos la etiqueta "<os>", en esta etiqueta, agregaremos las siguientes opciones
+
+```
+<os>
+    <type arch='x86_64' machine='pc-q35-8.2'>hvm</type>
+    <boot dev='cdrom'/>  //Incluiremos primeramente el cdrom antes que el disco que contiene el otro sistema
+    <boot dev='hd'/>
+    <bootmenu enable='yes'/> //Agregaremos tambien esta opcion, para que nos de entrada hacia el iso
+  </os>
+
+```
+
+Y en la parte de devices, debemos de asegurarnos que la ruta de la ISO este correctamente escrita
+
+```
+<disk type='file' device='cdrom'>
+      <driver name='qemu' type='raw'/>
+      <source file='/home/leonardo/VMs/mint/linuxmint-22.2-xfce-64bit.iso' index='1'/>
+      <backingStore/>
+      <target dev='sda' bus='sata'/>
+      <readonly/>
+      <alias name='sata0-0-0'/>
+      <address type='drive' controller='0' bus='0' target='0' unit='0'/>
+    </disk>
+```
+
+Podemos comprobar los cambios con 
+```
+    virsh dumpxml vm 
+```
+
+
+Nota:
+Puede ser que desaparezca de la lista de maquinas virtuales, por lo que hay que ejcutar "define" para que se carguen los cambios
+```
+    virsh define vm.xml     
+```
+
+
+
+
+
 -----
 Bibliografias 
 
