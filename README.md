@@ -248,14 +248,15 @@ Puede ser que desaparezca de la lista de maquinas virtuales, por lo que hay que 
 
 ## Conexion a las maquinas virtuales (local)
 Para conectarnos a una maquinas virtual, que esta corriendo, primero buscamos las que estan **activas**, con el comando:
-´´´
+
+```
     virsh list 
-´´´
+```
 
 Para conectarnos usamos:
-´´´
+```
     virt-viewer vm 
-´´´
+```
 
 
 ## Conexion a las maquinas virtuales (remoto)
@@ -263,32 +264,32 @@ Primero hay que asegurarnos que el firewall acepte conexion al puerto destino, e
 
 En caso de que tengamos ufw, habilitamos el servicio con:
 
-´´´
+```
     ufw allow 5900/tcp
-´´´
+```
 
 
 Podemos habilitar cualquier conexion a la maquina con la siguiente linea
 
-´´´
+```
 <graphics type='spice' port='5900' autoport='yes' listen='0.0.0.0'> //Agregamos 0.0.0.0 que habilita la conexion
       <listen type='address' address='0.0.0.0'/>
       <image compression='off'/>
     </graphics>
-´´´
+```
 
 Podemos agregar varios parametros, como una password por ejemplo, de ser el caso, esto de define asi:
 
-´´´
+```
     <graphics type='spice' port='5900' listen='0.0.0.0' passwd='TuPasswordFuerte'>
-´´´
+```
 
 
 Para finalmente conectarnos, usamos la herramienta de conexion, "remote-viewer"
 
-´´´
+```
     remote-viewer spice://192.168.1.75:5900
-´´´
+```
 
 
 -----
