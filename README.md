@@ -261,12 +261,14 @@ Para conectarnos usamos:
 Primero hay que asegurarnos que el firewall acepte conexion al puerto destino, en este caso usaremos el puerto 5900, el cual pertenece al servicio de VNC (virtual network computing), que sirve para conexiones de escritorio remoto, permitiendonos controlar la computadora
 
 En caso de que tengamos ufw, habilitamos el servicio con:
+
 ´´´
     ufw allow 5900/tcp
 ´´´
 
 
 Podemos habilitar cualquier conexion a la maquina con la siguiente linea
+
 ´´´
 <graphics type='spice' port='5900' autoport='yes' listen='0.0.0.0'> //Agregamos 0.0.0.0 que habilita la conexion
       <listen type='address' address='0.0.0.0'/>
@@ -276,12 +278,14 @@ Podemos habilitar cualquier conexion a la maquina con la siguiente linea
 ´´´
 
 Podemos agregar varios parametros, como una password por ejemplo, de ser el caso, esto de define asi:
+
 ´´´
     <graphics type='spice' port='5900' listen='0.0.0.0' passwd='TuPasswordFuerte'>
 ´´´
 
 
 Para finalmente conectarnos, usamos la herramienta de conexion, "remote-viewer"
+
 ´´´
     remote-viewer spice://192.168.1.75:5900
 ´´´
